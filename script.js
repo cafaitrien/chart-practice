@@ -14,18 +14,16 @@ console.log("let's build some charts!")
 
     // Create the data table.
     var data = new google.visualization.DataTable();
-    data.addColumn('string', 'Topping');
-    data.addColumn('number', 'Slices');
+    data.addColumn('string', 'Score Range');
+    data.addColumn('number', 'Games');
     data.addRows([
-      ['Mushrooms', 3],
-      ['Onions', 1],
-      ['Olives', 1],
-      ['Zucchini', 1],
-      ['Pinapples', 2]
+      ['0-100', 2],
+      ['100-200', 5],
+      ['200-300', 3],
     ]);
 
     // Set chart options
-    var options = {'title':'How much of a given topping was on the Pizza I Ate Last Night',
+    var options = {'title':'Bowling Score Incidences',
                    'width':400,
                    'height':300};
 
