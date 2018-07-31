@@ -6,8 +6,9 @@ console.log("let's build some charts!")
 
   // Set a callback to run when the Google Visualization API is loaded.
   google.charts.setOnLoadCallback(drawChart);
-  google.charts.setOnLoadCallback(drawAllocationChart);
-  google.charts.setOnLoadCallback(drawSemesterChart);
+
+  // google.charts.setOnLoadCallback(drawAllocationChart);
+  // google.charts.setOnLoadCallback(drawSemesterChart);
   function drawChart() {
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'Score Range');
@@ -69,41 +70,40 @@ console.log("let's build some charts!")
     chart.draw(data, options);
   }
 
-  // function drawChart() {
-  //        var container = document.getElementById('timeline');
-  //        var chart = new google.visualization.Timeline(container);
-  //        var dataTable = new google.visualization.DataTable();
-  //
-  //        dataTable.addColumn({ type: 'string', id: 'President' });
-  //        dataTable.addColumn({ type: 'date', id: 'Start' });
-  //        dataTable.addColumn({ type: 'date', id: 'End' });
-  //        dataTable.addRows([
-  //          [ 'Washington', new Date(1789, 3, 30), new Date(1797, 2, 4) ],
-  //          [ 'Adams',      new Date(1797, 2, 4),  new Date(1801, 2, 4) ],
-  //          [ 'Jefferson',  new Date(1801, 2, 4),  new Date(1809, 2, 4) ]]);
-  //
-  //        chart.draw(dataTable);
-  //
-  // function drawStudentVisualizationChart() {
-  //   var data = new google.visualization.DataTable();
-  //   data.addColumn('string', 'Expense');
-  //   data.addColumn('number', 'Cents');
-  //   data.addRows([
-  //     ['administrative costs', 4],
-  //     ['fundraising', 16],
-  //     ['youth programs', 36],
-  //     ['adult program', 44]
-  //   ]);
-  //
-  //   var options = {'title':'Each Dollar Donated Goes To',
-  //                  'width':400,
-  //                  'height':300,
-  //                  'pieHole': 0.5,
-  //                  colors: ['#8AD1C2', '#9F8AD1', '#D18A99', '#BCD18A']};
-  //
-  //   var chart = new google.visualization.PieChart(document.getElementById('allocation'));
-  //   chart.draw(data, options);
-  // }
+  function drawStudentVisualizationChart() {
+    //        var container = document.getElementById('timeline');
+    //        var chart = new google.visualization.Timeline(container);
+    //        var dataTable = new google.visualization.DataTable();
+    //
+    //        dataTable.addColumn({ type: 'string', id: 'President' });
+    //        dataTable.addColumn({ type: 'date', id: 'Start' });
+    //        dataTable.addColumn({ type: 'date', id: 'End' });
+    //        dataTable.addRows([
+    //          [ 'Washington', new Date(1789, 3, 30), new Date(1797, 2, 4) ],
+    //          [ 'Adams',      new Date(1797, 2, 4),  new Date(1801, 2, 4) ],
+    //          [ 'Jefferson',  new Date(1801, 2, 4),  new Date(1809, 2, 4) ]]);
+    //
+    //        chart.draw(dataTable);
+    //
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Expense');
+    data.addColumn('number', 'Cents');
+    data.addRows([
+      ['administrative costs', 4],
+      ['fundraising', 16],
+      ['youth programs', 36],
+      ['adult program', 44]
+    ]);
+
+    var options = {'title':'Each Dollar Donated Goes To',
+                   'width':400,
+                   'height':300,
+                   'pieHole': 0.5,
+                   colors: ['#8AD1C2', '#9F8AD1', '#D18A99', '#BCD18A']};
+
+    var chart = new google.visualization.PieChart(document.getElementById('allocation'));
+    chart.draw(data, options);
+  }
   // The product team would like a visualization that shows students a timeline of how their studies in major area will progress.
   // This will be for students who begin their studies in September of 2018.
   //   1. From Sept of 2018 to May of 2019, students will complete general education requirements.
@@ -118,3 +118,36 @@ console.log("let's build some charts!")
   //(fall and spring, 2019 through 2022) of their study.
   //
   // The colors used for the charts should be shades of blue.
+
+window.onload = function() {
+  //Event Listeners for each button: clear all charts, redraw reauested one
+  document.getElementById('bowling-trigger').addEventListener('click', function(){
+  document.getElementById('chart_div').innerHTML = "";
+  document.getElementById('allocation').innerHTML = "";
+  document.getElementById('SemesterChart').innerHTML = "";
+  document.getElementById('StudentVisualizationChart').innerHTML = "";
+  drawChart()
+  });
+
+  document.getElementById('allocation-trigger').addEventListener('click', function(){
+    document.getElementById('chart_div').innerHTML = "";
+    document.getElementById('allocation').innerHTML = "";
+    document.getElementById('SemesterChart').innerHTML = "";
+    document.getElementById('StudentVisualizationChart').innerHTML = "";
+    drawAllocationChart()
+  });
+  document.getElementById('timeline-trigger').addEventListener('click', function(){
+    document.getElementById('chart_div').innerHTML = "";
+    document.getElementById('allocation').innerHTML = "";
+    document.getElementById('SemesterChart').innerHTML = "";
+    document.getElementById('StudentVisualizationChart').innerHTML = "";
+    drawStudentVisualizationChart()
+  });
+  document.getElementById('semester-trigger').addEventListener('click', function(){
+    document.getElementById('chart_div').innerHTML = "";
+    document.getElementById('allocation').innerHTML = "";
+    document.getElementById('SemesterChart').innerHTML = "";
+    document.getElementById('StudentVisualizationChart').innerHTML = "";
+    drawSemesterChart()
+  });
+}
