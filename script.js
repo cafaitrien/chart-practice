@@ -19,7 +19,8 @@ console.log("let's build some charts!")
 
     var options = {'title':'Bowling Score Incidences',
                    'width':400,
-                   'height':300};
+                   'height':300,
+                   'pieHole': 0.5};
 
     var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
     chart.draw(data, options);
@@ -27,17 +28,20 @@ console.log("let's build some charts!")
 
   function drawAllocationChart() {
     var data = new google.visualization.DataTable();
-    data.addColumn('string', 'Score Range');
-    data.addColumn('number', 'Games');
+    data.addColumn('string', 'Expense');
+    data.addColumn('number', 'Cents');
     data.addRows([
-      ['0-100', 2],
-      ['100-200', 5],
-      ['200-300', 3],
+      ['administrative costs', 4],
+      ['fundraising', 16],
+      ['youth programs', 36],
+      ['adult program', 44]
     ]);
 
-    var options = {'title':'Bowling Score Incidences',
+    var options = {'title':'Each Dollar Donated Goes To',
                    'width':400,
-                   'height':300};
+                   'height':300,
+                   'pieHole': 0.5,
+                   colors: ['#8AD1C2', '#9F8AD1', '#D18A99', '#BCD18A']};
 
     var chart = new google.visualization.PieChart(document.getElementById('allocation'));
     chart.draw(data, options);
